@@ -11,6 +11,10 @@ app.set("view engine", "html");
 global.guesses = [];
 global.answers = [];
 
+function random(num1, num2){
+  return Math.round(Math.random() * (num2 - num1)) + num1;
+};
+
 getGuesses().then(guesses => {
   global.guesses = guesses;
 });
@@ -21,7 +25,13 @@ getAnswers().then(answers => {
 
 
 io.on("connection", socket => {
-  
+  socket.on("name", name => {
+    if(!name.replace(" ", "")){
+      socket.emit("name", `Player_${random(1000, 9999)}`);
+    } else {
+      socket.emit("name", true);
+    }
+  });
 });
 
 app.get("/", (req, res) => {
