@@ -7,6 +7,10 @@ app.use(express.static("public"));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
+io.on("connection", socket => {
+  
+});
+
 app.get("/", (req, res) => {
   res.render("index.html");
 });
