@@ -1,0 +1,3 @@
+- multiplayer - see who guesses the word first!
+- chatbox
+- play with anyone or private game
