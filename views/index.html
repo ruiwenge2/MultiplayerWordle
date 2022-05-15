@@ -6,10 +6,10 @@
   <body>
     <h1>Multiplayer Wordle</h1>
     <label>Enter name:</label><br><br><input id="input" oninput="localStorage.setItem('name', this.value)" maxlength="20"><br><br>
-    <button>Play with anyone</button><br><br>
-    <button>Share private game</button><br><br>
+    <button onclick="playWithAnyone()">Play with anyone</button><br><br>
+    <button onclick="privateGame()">Share private game</button><br><br>
     <a href="/regular"><button>Play regular Wordle</button></a>
-    <script src="/script.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
   </body>
 </html>
