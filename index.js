@@ -8,6 +8,7 @@ app.use(express.static("public"));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
+const currentwords = {};
 const waitingList = [];
 const rooms = {};
 
@@ -41,6 +42,11 @@ getAnswers().then(answers => {
 });
 
 io.on("connection", socket => {
+  socket.on("regular player", () => {
+    currentwords[socket.id] = getWord();
+    console.log(currentwords);
+  });
+  
   socket.on("name", (name, type) => {
     if(!name.replace(/\s/g, "")){
       socket.emit("name", `Player_${random(1000, 9999)}`, type);
@@ -50,7 +56,7 @@ io.on("connection", socket => {
   });
 
   socket.on("waiting", name => {
-    waitingList.push(name);
+    waitingList.push(socket.id);
     console.log(`${name} is waiting`);
   });
 
@@ -62,6 +68,13 @@ io.on("connection", socket => {
     rooms[code] = {};
     socket.emit("gamecode", code);
   });
+
+  socket.on("disconnect", () => {
+    if(Object.keys(currentwords).includes(socket.id)){
+      delete currentwords[socket.id];
+      console.log(currentwords);
+    }
+  })
 });
 
 app.get("/", (req, res) => {
