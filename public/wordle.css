@@ -1,0 +1,20 @@
+#board {
+  margin:0 auto;
+  width:25%;
+  height:50vh;
+  text-align:center;
+}
+.tile {
+  display:inline-block;
+  width:15%;
+  height:15%;
+  margin:3px;
+  border:2px solid white;
+  vertical-align: top;
+}
+
+.tile span {
+  vertical-align: middle;
+  line-height: normal;
+  font-size:7vmin;
+}

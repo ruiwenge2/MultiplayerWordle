@@ -42,7 +42,7 @@ getAnswers().then(answers => {
 
 io.on("connection", socket => {
   socket.on("name", (name, type) => {
-    if(!name.replace(/\s/g, '')){
+    if(!name.replace(/\s/g, "")){
       socket.emit("name", `Player_${random(1000, 9999)}`, type);
     } else {
       socket.emit("name", true, type);
@@ -51,7 +51,7 @@ io.on("connection", socket => {
 
   socket.on("waiting", name => {
     waitingList.push(name);
-    console.log("ok");
+    console.log(`${name} is waiting`);
   });
 
   socket.on("privateGame", () => {
