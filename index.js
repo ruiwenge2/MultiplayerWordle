@@ -47,6 +47,8 @@ function makeLetterCount(guess){
 
 function checkGuess(guess, word){
   let colors = [];
+  let count = makeLetterCount(guess);
+  letter_count = makeLetterCount(word);
   for(let i = 0; i < 5; i++){
     if(guess[i] == word[i]){
       colors.push("green");
