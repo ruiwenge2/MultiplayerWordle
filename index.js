@@ -33,6 +33,26 @@ function getWord(){
   return answers[random(0, answers.length - 1)];
 }
 
+function makeLetterCount(guess){
+  count = {};
+  for(let i of guess){
+    if(Object.keys(count).includes(i)){
+      
+    }
+  }
+}
+
+function checkGuess(guess, word){
+  let colors = [];
+  for(let i = 0; i < 5; i++){
+    if(guess[i] == word[i]){
+      colors.push("green");
+    } else if(guess[i] in word){
+      
+    }
+  }
+}
+
 getGuesses().then(guesses => {
   global.guesses = guesses;
 });
@@ -42,9 +62,15 @@ getAnswers().then(answers => {
 });
 
 io.on("connection", socket => {
+
+  // regular wordle
   socket.on("regular player", () => {
     currentwords[socket.id] = getWord();
     console.log(currentwords);
+  });
+
+  socket.on("regular_guess", guess => {
+    
   });
   
   socket.on("name", (name, type) => {
@@ -55,6 +81,7 @@ io.on("connection", socket => {
     }
   });
 
+  // play with anyone
   socket.on("waiting", name => {
     waitingList.push(socket.id);
     console.log(`${name} is waiting`);
@@ -105,3 +132,4 @@ server.listen(3000, () => {
   console.log("server started");
 });
 
+// https://github.com/Morgenstern2573/wordle_clone

@@ -24,6 +24,17 @@ function inputLetter(l){
   }
 }
 
+function enterKey(){
+  socket.emit("regular_guess", guess);
+}
+
+function backspace(){
+  if(!letter) return;
+  guess = guess.substring(0, letter - 1);
+  document.getElementById(`row${chance}col${letter - 1}`).innerHTML = "";
+  letter--;
+}
+
 for(let i = 0; i < 6; i++){
   for(let j = 0; j < 5; j++){
     let element = document.createElement("div");
@@ -37,24 +48,20 @@ for(let i = 0; i < 6; i++){
 
 for(let i of keyslist){
   for(let j of i){
-    let key = document.createElement("button");
-    key.className = "key";
-    key.id = `key_${j}`;
-    key.innerHTML = j;
-    keyboard.appendChild(key);
-    key.addEventListener("click", function(){
-      alert(j)
-      inputLetter(j);
-    });
-
+    keyboard.innerHTML += `<button class="key" id="key_${j}" onclick="inputLetter('${j}')">${j}</button>`;
   }
   keyboard.innerHTML += "<br>";
 }
 
-document.addEventListener("keyup", e => {
+document.addEventListener("keydown", e => {
   if(e.key.length == 1){
     inputLetter(e.key);
   } else if(e.key == "Enter"){
-    socket.emit("regular_guess", guess);
+    enterKey();
+  } else if(e.key == "Backspace"){
+    backspace();
   }
 });
+
+document.getElementById("key_Enter").addEventListener("click", enterKey);
+document.getElementById("key_Backspace").addEventListener("click", backspace);
