@@ -16,17 +16,7 @@
   border-radius:3px;
 }
 
-.green {
-  background: #6aaa64;
-}
 
-.yellow {
-  background: #c9b458;
-}
-
-.gray {
-  background: #787c7e;
-}
 
 #keyboard {
   margin:0 auto;
@@ -41,8 +31,21 @@
   margin:3px;
   text-align;center;
   border-radius:3px;
+  transition:none;
 }
 .key:hover {
   background:lightgray;
   color:black;
+}
+
+.gray {
+  background: #787c7e !important;
+}
+
+.yellow {
+  background: #c9b458 !important;
+}
+
+.green {
+  background: #6aaa64 !important;
 }

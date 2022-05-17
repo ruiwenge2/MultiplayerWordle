@@ -24,9 +24,7 @@ function inputLetter(l){
   }
 }
 
-function enterKey(){
-  socket.emit("regular_guess", guess);
-}
+
 
 function backspace(){
   if(!letter) return;
@@ -53,15 +51,3 @@ for(let i of keyslist){
   keyboard.innerHTML += "<br>";
 }
 
-document.addEventListener("keydown", e => {
-  if(e.key.length == 1){
-    inputLetter(e.key);
-  } else if(e.key == "Enter"){
-    enterKey();
-  } else if(e.key == "Backspace"){
-    backspace();
-  }
-});
-
-document.getElementById("key_Enter").addEventListener("click", enterKey);
-document.getElementById("key_Backspace").addEventListener("click", backspace);

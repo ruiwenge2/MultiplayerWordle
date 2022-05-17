@@ -52,10 +52,17 @@ function checkGuess(guess, word){
   for(let i = 0; i < 5; i++){
     if(guess[i] == word[i]){
       colors.push("green");
-    } else if(guess[i] in word){
-      
+    } else if(word.includes(guess[i])){
+      if(count[guess[i]] > letter_count[guess[i]] && letter_count[guess[i]] > 0){
+        colors.push("gray");
+      } else {
+        colors.push("yellow");
+      }
+    } else {
+      colors.push("gray");
     }
   }
+  return colors;
 }
 
 getGuesses().then(guesses => {
@@ -75,7 +82,21 @@ io.on("connection", socket => {
   });
 
   socket.on("regular_guess", guess => {
-    
+    if(typeof guess != "string" || guess.length > 5 || !Object.keys(currentwords).includes(socket.id)) return;
+    if(guess.length < 5){
+      socket.emit("regular_guess_error", "Not enough letters.");
+      return;
+    }
+    if(!guesses.includes(guess)){
+      socket.emit("regular_guess_error", "Not in word list.");
+      return;
+    }
+    socket.emit("regular_guess_success", checkGuess(guess, currentwords[socket.id]));
+  });
+
+  socket.on("regular_lost", () => {
+    if(!Object.keys(currentwords).includes(socket.id)) return;
+    socket.emit("regular_lost", currentwords[socket.id]);
   });
   
   socket.on("name", (name, type) => {
