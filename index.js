@@ -37,9 +37,12 @@ function makeLetterCount(guess){
   count = {};
   for(let i of guess){
     if(Object.keys(count).includes(i)){
-      
+      count[i] ++;
+    } else {
+      count[i] = 1;
     }
   }
+  return count;
 }
 
 function checkGuess(guess, word){
