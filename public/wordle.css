@@ -16,14 +16,12 @@
   border-radius:3px;
 }
 
-
-
 #keyboard {
   margin:0 auto;
 }
 
 .key {
-  min-width:30px;
+  min-width:40px;
   background:lightgray;
   border:none;
   color:black;
@@ -32,20 +30,37 @@
   text-align;center;
   border-radius:3px;
   transition:none;
+  font-size:20px;
 }
 .key:hover {
   background:lightgray;
   color:black;
+  cursor:pointer;
 }
 
-.gray {
+.gray-tile {
+  background: #787c7e !important;
+  border: 2px solid #787c7e;
+}
+
+.yellow-tile {
+  background: #c9b458 !important;
+  border: 2px solid #c9b458;
+}
+
+.green-tile {
+  background: #6aaa64 !important;
+  border: 2px solid #6aaa64;
+}
+
+.gray-key {
   background: #787c7e !important;
 }
 
-.yellow {
+.yellow-key {
   background: #c9b458 !important;
 }
 
-.green {
+.green-key {
   background: #6aaa64 !important;
 }

@@ -1,4 +1,5 @@
 const socket = io();
+var won = false;
 
 socket.emit("regular player");
 
@@ -9,10 +10,23 @@ function enterKey(){
 
 socket.on("regular_guess_success", colors => {
   for(let i = 0; i < 5; i++){
-    document.getElementById(`row${chance}col${i}`).className += " " + colors[i];
-      document.getElementById(`key_${guess[i].toUpperCase()}`).className += " " + colors[i];
+    document.getElementById(`row${chance}col${i}`).className += ` ${colors[i]}-tile`;
+      document.getElementById(`key_${guess[i].toUpperCase()}`).className += ` ${colors[i]}-key`;
   }
-  if(chance >= 5){
+  
+  if(JSON.stringify(colors) == `["green","green","green","green","green"]`){
+    won = true;
+    setTimeout(() => {
+      confirmmodal("", "Correct, you win!", ok="Play Again").then(() => {location.reload()});
+
+      let cancelbtn = document.getElementsByClassName("cancelbtn")[0];
+      cancelbtn.innerHTML = "Home";
+      cancelbtn.onclick = function(){
+        location.href = "/";
+      };
+    }, 1000);
+  }
+  if(chance >= 5 && !won){
     socket.emit("regular_lost"); // :(
   }
   guess = "";
@@ -27,9 +41,15 @@ socket.on("regular_guess_error", error => {
 
 socket.on("regular_lost", word => {
   setTimeout(() => {
-    alertmodal("", "The word was: " + word).then(() => {location.reload()});
-  }, 1000)
-})
+    confirmmodal("", `The word was ${word}.`, ok="Play Again").then(() => {location.reload()});
+
+    let cancelbtn = document.getElementsByClassName("cancelbtn")[0];
+    cancelbtn.innerHTML = "Home";
+    cancelbtn.onclick = function(){
+      location.href = "/";
+    };
+  }, 1000);
+});
 
 document.addEventListener("keydown", e => {
   if(e.key.length == 1){
