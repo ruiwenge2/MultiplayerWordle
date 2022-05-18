@@ -41,7 +41,7 @@ socket.on("regular_guess_success", colors => {
 
 socket.on("regular_guess_error", error => {
   if(gameend) return;
-  alert(error);
+  toastr.error(error);
 });
 
 socket.on("regular_lost", word => {
