@@ -1,2 +1,2 @@
 # MultiplayerWordle
-Multiplayer version of Wordle.
+A multiplayer version of Wordle.
