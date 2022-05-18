@@ -6,6 +6,7 @@ const io = require("socket.io")(server);
 const { getGuesses, getAnswers } = require("./words");
 
 app.use(express.static(path.join(__dirname + "public")));
+console.log(path.join(__dirname + "public"))
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
