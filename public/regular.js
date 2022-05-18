@@ -17,7 +17,7 @@ socket.on("regular_guess_success", colors => {
   if(JSON.stringify(colors) == `["green","green","green","green","green"]`){
     won = true;
     setTimeout(() => {
-      confirmmodal("", "Correct, you win!", ok="Play Again").then(() => {location.reload()});
+      confirmmodal("Correct", "You win!", ok="Play Again").then(() => {location.reload()});
 
       let cancelbtn = document.getElementsByClassName("cancelbtn")[0];
       cancelbtn.innerHTML = "Home";
@@ -41,7 +41,7 @@ socket.on("regular_guess_error", error => {
 
 socket.on("regular_lost", word => {
   setTimeout(() => {
-    confirmmodal("", `The word was ${word}.`, ok="Play Again").then(() => {location.reload()});
+    confirmmodal("You Lose", `The word was ${word}.`, ok="Play Again").then(() => {location.reload()});
 
     let cancelbtn = document.getElementsByClassName("cancelbtn")[0];
     cancelbtn.innerHTML = "Home";
