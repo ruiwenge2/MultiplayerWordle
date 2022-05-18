@@ -5,9 +5,8 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const { getGuesses, getAnswers } = require("./words");
 
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static("public"));
 console.log(path.join(__dirname, "/public"));
-app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
 const currentwords = {};
@@ -133,18 +132,18 @@ io.on("connection", socket => {
 });
 
 app.get("/", (req, res) => {
-  res.render("index.html");
+  res.sendFile(path.join(__dirname, "/views/index.html"));
 });
 
 app.get("/regular", (req, res) => {
-  res.render("regular.html");
+  res.sendFile(path.join(__dirname, "/views/regular.html"));
 });
 
 app.get("/game/:id", (req, res) => {
   if(!Object.keys(rooms).includes(req.params.id)){
-    res.status(404).render("404.html");
+    res.status(404).sendFile(path.join(__dirname, "/views/404.html"));
   } else {
-    res.render("multiplayer.html");
+    res.sendFile(path.join(__dirname, "/views/multiplayer.html"));
   }
 });
 
@@ -153,7 +152,7 @@ app.get("/getword", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-  res.status(404).render("404.html");
+  res.status(404).sendFile(path.join(__dirname, "/views/404.html"));
 });
 
 server.listen(3000, () => {
