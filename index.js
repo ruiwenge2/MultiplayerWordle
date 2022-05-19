@@ -157,7 +157,3 @@ app.get("/*", (req, res) => {
 server.listen(3000, () => {
   console.log("server started");
 });
-
-// https://github.com/Morgenstern2573/wordle_clone
-
-// https://wordle-clone-drab.vercel.app
