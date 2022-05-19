@@ -3,10 +3,21 @@
   <head>
     <title>Multiplayer Wordle</title>
     <link href="/style.css" rel="stylesheet">
+    <link href="/wordle.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
   </head>
   <body>
     <h1>Multiplayer Wordle</h1>
-
+    <div id="otherboard"></div>
+    <div id="otherkeyboard"></div>
+    <div id="board"></div>
+    <div id="keyboard"></div>
+    <script
+src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/socket.io/socket.io.min.js"></script>
+    <script src="https://modal.ruiwenge2.repl.co/min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="/wordle.js"></script>
+    <script src="/regular.js"></script>
   </body>
 </html>
