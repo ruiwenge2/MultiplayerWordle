@@ -55,6 +55,7 @@ function checkGuess(guess, word){
     } else if(word.includes(guess[i])){
       if(count[guess[i]] > letter_count[guess[i]] && letter_count[guess[i]] > 0){
         colors.push("gray");
+        count[guess[i]] -= 1;
       } else {
         colors.push("yellow");
       }
