@@ -70,3 +70,5 @@ document.addEventListener("keydown", e => {
 
 document.getElementById("key_Enter").addEventListener("click", enterKey);
 document.getElementById("key_Backspace").addEventListener("click", backspace);
+
+console.log(toastr);
