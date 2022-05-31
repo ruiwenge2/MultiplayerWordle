@@ -139,6 +139,10 @@ io.on("connection", socket => {
     socket.emit("gamecode", code);
   });
 
+  socket.on("joinRoom", () => {
+    
+  });
+
   socket.on("disconnect", () => {
     if(Object.keys(currentwords).includes(socket.id)){
       delete currentwords[socket.id];
