@@ -99,6 +99,9 @@ io.on("connection", socket => {
   });
 
   socket.on("regular_guess", guess => {
+    if(!Object.keys(currentwords).includes(socket.id)){
+      socket.emit("disconnected");
+    }
     if(typeof guess != "string" || guess.length > 5 || !Object.keys(currentwords).includes(socket.id)) return;
     if(guess.length < 5){
       socket.emit("regular_guess_error", "Not enough letters.");

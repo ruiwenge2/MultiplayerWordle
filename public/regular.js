@@ -57,6 +57,10 @@ socket.on("regular_lost", word => {
   }, 1000);
 });
 
+socket.on("disconnected", () => {
+  location.reload();
+});
+
 document.addEventListener("keydown", e => {
   if(gameend) return;
   if(e.key.length == 1){
@@ -71,4 +75,3 @@ document.addEventListener("keydown", e => {
 document.getElementById("key_Enter").addEventListener("click", enterKey);
 document.getElementById("key_Backspace").addEventListener("click", backspace);
 
-console.log(toastr);
