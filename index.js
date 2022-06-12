@@ -178,6 +178,6 @@ app.get("/*", (req, res) => {
   res.status(404).render("404.html");
 })
 
-server.listen(process.env.PORT || 80, () => {
+server.listen(process.env.PORT || 3000, () => {
   console.log("server started");
 });
